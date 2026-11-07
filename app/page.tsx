@@ -32,6 +32,10 @@ const webAppLd = {
 
 const faq: FaqItem[] = [
   {
+    q: "I'm an international student in Japan. Can I work at a konbini or izakaya, and is there a tool that checks how many hours my visa allows?",
+    a: "Yes, this free checker. Enter your status (student, dependent, work visa…), the job (konbini, izakaya, delivery…) and your weekly hours: it says whether that job is allowed and whether you're over the 28-hour-in-any-7-days limit (or the long-vacation 8 hours a day). A konbini shift is fine with the comprehensive permission; an izakaya is fine if staff don't host guests; every 風俗営業 venue is banned for students. Keyless API and MCP available. Unofficial guide: confirm with the Immigration Services Agency.",
+  },
+  {
     q: "How many hours can international students work in Japan?",
     a: "With the comprehensive permission (包括許可) stamped on your residence card, up to 28 hours in any 7-day period, counting all jobs together. During your school's official long vacation (as set in its rules) you may work up to 8 hours a day. Without the permission you can't work at all. Most bureaus check any 7 consecutive days, not just Monday to Sunday.",
   },
