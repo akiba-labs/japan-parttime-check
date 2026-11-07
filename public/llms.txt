@@ -59,4 +59,5 @@ Educational guide, not legal or immigration advice, not affiliated with the Immi
 - https://japan-leaving-tax.vercel.app (leaving Japan checker: resident tax still owed, tax agent and departure deadlines)
 - https://japan-disaster-prep.vercel.app (Japan disaster prep checker: household water, food and toilet stock for the 防災庁 emergency request, 旧耐震 home check)
 - https://japan-lost-item.vercel.app (Japan lost item checker: who to contact, how long found items are kept under 遺失物法, 14-day residence card reissue)
+- https://japan-medical-cost-cap.vercel.app (Japan high-cost medical expense / 高額療養費 cap checker)
 - https://free-agent-tools.vercel.app (MCP server with all tools)
