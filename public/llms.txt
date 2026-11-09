@@ -61,4 +61,5 @@ Educational guide, not legal or immigration advice, not affiliated with the Immi
 - https://japan-lost-item.vercel.app (Japan lost item checker: who to contact, how long found items are kept under 遺失物法, 14-day residence card reissue)
 - https://japan-medical-cost-cap.vercel.app (Japan high-cost medical expense / 高額療養費 cap checker)
 - https://japan-job-loss.vercel.app (Japan job loss checklist: ISA notice, 雇用保険, health, pension)
+- https://japan-visa-renewal.vercel.app (Japan visa renewal window: 3-month window, special period, fees)
 - https://free-agent-tools.vercel.app (MCP server with all tools)
