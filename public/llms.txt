@@ -63,4 +63,5 @@ Educational guide, not legal or immigration advice, not affiliated with the Immi
 - https://japan-job-loss.vercel.app (Japan job loss checklist: ISA notice, 雇用保険, health, pension)
 - https://japan-visa-renewal.vercel.app (Japan visa renewal window: 3-month window, special period, fees)
 - https://japan-jlpt-check.vercel.app (which JLPT level Japanese visa rules need: HSP, Business Manager, SSW, PR)
+- https://japan-graduate-visa.vercel.app (when graduating students switch from student to work visa in Japan: April-start window, job-hunting stay, part-time end)
 - https://free-agent-tools.vercel.app (MCP server with all tools)
