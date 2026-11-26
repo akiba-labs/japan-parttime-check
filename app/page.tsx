@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Calculator } from "@/components/calculator";
 import { FaqSection, type FaqItem } from "@/components/faq-section";
+import { API_PAUSED_NOTE, isGithubPages, pagesSiteUrl, withBasePath } from "@/lib/hosting";
 import { SOURCES } from "@/lib/parttime";
 import { EXAMPLE_SHARED, EXAMPLE_STUDENT, PUBLIC_URL, resultPath } from "@/lib/share";
 
@@ -21,7 +22,7 @@ const webAppLd = {
   "@type": "WebApplication",
   name: "Japan Part-time Work Check",
   alternateName: ["資格外活動許可 チェック", "留学生 アルバイト 28時間 判定", "家族滞在 パチンコ アルバイト 2026", "Japan student visa part-time job checker"],
-  url: PUBLIC_URL,
+  url: isGithubPages ? pagesSiteUrl(PUBLIC_URL) : PUBLIC_URL,
   applicationCategory: "UtilitiesApplication",
   operatingSystem: "Any",
   isAccessibleForFree: true,
@@ -73,7 +74,9 @@ const faq: FaqItem[] = [
   },
   {
     q: "Is there a free API for AI agents?",
-    a: `Yes. GET or POST ${PUBLIC_URL}/api/check?status=student&job=convenience_store&permission=comprehensive&weeklyHours=30 (keyless, CORS open), rules at /api/rules, OpenAPI at /openapi.json, llms.txt, and the MCP tool japan_parttime_work_check on free-agent-tools.vercel.app/mcp. Every response carries rulesAsOf, sources and a disclaimer.`,
+    a: isGithubPages
+      ? API_PAUSED_NOTE
+      : `Yes. GET or POST ${PUBLIC_URL}/api/check?status=student&job=convenience_store&permission=comprehensive&weeklyHours=30 (keyless, CORS open), rules at /api/rules, OpenAPI at /openapi.json, llms.txt, and the MCP tool japan_parttime_work_check on free-agent-tools.vercel.app/mcp. Every response carries rulesAsOf, sources and a disclaimer.`,
   },
   {
     q: "留学生のアルバイトは週何時間までですか？",
@@ -106,11 +109,11 @@ export default function HomePage() {
         </p>
         <p className="mt-3 text-sm text-muted">
           Examples:{" "}
-          <a className="underline underline-offset-2 hover:text-foreground" href={resultPath(EXAMPLE_SHARED)}>
+          <a className="underline underline-offset-2 hover:text-foreground" href={isGithubPages ? withBasePath("/") : resultPath(EXAMPLE_SHARED)}>
             dependent at a pachinko parlor, 20 h
           </a>
           {" · "}
-          <a className="underline underline-offset-2 hover:text-foreground" href={resultPath(EXAMPLE_STUDENT)}>
+          <a className="underline underline-offset-2 hover:text-foreground" href={isGithubPages ? withBasePath("/") : resultPath(EXAMPLE_STUDENT)}>
             student at a konbini, 30 h
           </a>
         </p>
@@ -160,18 +163,28 @@ export default function HomePage() {
 
       <section className="mt-12 max-w-3xl rounded-3xl border border-line bg-panel/40 p-5 sm:p-6">
         <h2 className="text-lg font-semibold text-foreground">For AI agents and developers</h2>
-        <p className="mt-2 text-sm text-muted">
-          Keyless JSON, CORS open, GET or POST:{" "}
-          <a className="font-mono text-foreground underline underline-offset-2 break-all" href="/api/check?status=dependent&job=pachinko&permission=comprehensive&weeklyHours=20">
-            /api/check?status=dependent&amp;job=pachinko&amp;permission=comprehensive&amp;weeklyHours=20
-          </a>
-          . Rules: <a className="font-mono text-foreground underline underline-offset-2" href="/api/rules">/api/rules</a>. Docs: <a className="underline underline-offset-2" href="/openapi.json">OpenAPI</a>,{" "}
-          <a className="underline underline-offset-2" href="/llms.txt">llms.txt</a>, MCP tool <span className="font-mono text-foreground">japan_parttime_work_check</span> on{" "}
-          <a className="underline underline-offset-2" href="https://free-agent-tools.vercel.app" target="_blank" rel="noopener noreferrer">
-            free-agent-tools
-          </a>
-          .
-        </p>
+        {isGithubPages ? (
+          <p className="mt-2 text-sm text-muted">
+            {API_PAUSED_NOTE}{" "}
+            <a className="underline underline-offset-2" href={withBasePath("/llms.txt")}>
+              llms.txt
+            </a>{" "}
+            describes the checker and the API contract.
+          </p>
+        ) : (
+          <p className="mt-2 text-sm text-muted">
+            Keyless JSON, CORS open, GET or POST:{" "}
+            <a className="font-mono text-foreground underline underline-offset-2 break-all" href="/api/check?status=dependent&job=pachinko&permission=comprehensive&weeklyHours=20">
+              /api/check?status=dependent&amp;job=pachinko&amp;permission=comprehensive&amp;weeklyHours=20
+            </a>
+            . Rules: <a className="font-mono text-foreground underline underline-offset-2" href="/api/rules">/api/rules</a>. Docs: <a className="underline underline-offset-2" href="/openapi.json">OpenAPI</a>,{" "}
+            <a className="underline underline-offset-2" href="/llms.txt">llms.txt</a>, MCP tool <span className="font-mono text-foreground">japan_parttime_work_check</span> on{" "}
+            <a className="underline underline-offset-2" href="https://free-agent-tools.vercel.app" target="_blank" rel="noopener noreferrer">
+              free-agent-tools
+            </a>
+            .
+          </p>
+        )}
       </section>
 
       <FaqSection items={faq} heading="Part-time work in Japan: questions" />
