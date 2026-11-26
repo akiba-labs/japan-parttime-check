@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { CardDisclaimer } from "@/components/card-disclaimer";
 import { ShareBar } from "@/components/share-bar";
+import { isGithubPages, pagesSiteUrl } from "@/lib/hosting";
 import { JOBS, JOB_INFO, STATUSES, STATUS_LABEL, type Job, type Permission, type Status } from "@/lib/parttime";
 import { EXAMPLE_SHARED, PUBLIC_URL, resultPath, safeCheck, type Shared } from "@/lib/share";
 
@@ -60,7 +61,7 @@ export function Calculator({ initial }: { initial?: Shared }) {
     sameCategoryWork: status === "work_visa" && same,
   };
   const r = safeCheck(shared);
-  const shareUrl = `${PUBLIC_URL}${resultPath(shared)}`;
+  const shareUrl = isGithubPages ? `${pagesSiteUrl(PUBLIC_URL)}/` : `${PUBLIC_URL}${resultPath(shared)}`;
 
   return (
     <div className="grid gap-6 lg:grid-cols-[0.9fr_1.3fr]">
@@ -183,6 +184,9 @@ export function Calculator({ initial }: { initial?: Shared }) {
                 ) : null,
               )}
               <div className="mt-6">
+                {isGithubPages ? (
+                  <p className="mb-3 text-xs text-muted">Share the checker. A link to this exact result returns when hosting is back.</p>
+                ) : null}
                 <ShareBar url={shareUrl} text={`Japan part-time work check: ${r.statusLabel.en.split(" (")[0]} at ${r.jobLabel.en.split(" (")[0].split(" /")[0]} → ${r.verdictLabel}`} />
               </div>
             </>
